@@ -16,7 +16,6 @@ public class InteractivePanel extends JPanel {
     private final String btnStartValue = "Start";
     private final String btnStopValue = "Stop";
     private JButton btnSend;
-    private static double emoStateTimeInterval;
     private JCheckBox chckbxAutoReset;
     private JSpinner emoStateSpinner;
     private boolean isAutoReset = false;

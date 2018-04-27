@@ -1,12 +1,17 @@
 package main.server.view;
 
 import com.sun.deploy.panel.JavaPanel;
+import main.model.EmotionMessageBean;
+import main.server.view.components.EyeControl;
 import main.server.view.components.MetricControl;
+import main.server.view.components.XSpinner;
 import main.utils.Consts;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class DetectionPanel extends JPanel {
 
@@ -31,7 +36,7 @@ public class DetectionPanel extends JPanel {
     private double pfMetricSelectedValue;
     private double timeTxtFieldVal;
 
-    public DetectionPanel(){
+    public DetectionPanel(EmotionMessageBean emotionMessageBean){
         this.setBorder(new TitledBorder("Detection"));
 
         timeTxtField = new JTextField();
@@ -45,16 +50,17 @@ public class DetectionPanel extends JPanel {
 
         JPanel panel2 = new JPanel();
         panel2.setLayout(new FlowLayout(FlowLayout.LEADING,0,10));
-        panel2.add(new MetricControl("Upperface:", Consts.upperfaceItems));
-        panel2.add(new MetricControl("Lowerface:", Consts.lowerfaceItems));
+        panel2.add(new MetricControl("Upperface:", Consts.upperfaceItems, emotionMessageBean));
+        panel2.add(new MetricControl("Lowerface:", Consts.lowerfaceItems, emotionMessageBean));
+
 
         JPanel panel3 = new JPanel();
         panel3.setLayout(new FlowLayout(FlowLayout.LEADING,0,10));
-        panel3.add(new MetricControl("Eye:", Consts.eyeItems));
+        panel3.add(new EyeControl("Eye:", Consts.eyeItems, emotionMessageBean));
 
         JPanel panel4 = new JPanel();
         panel4.setLayout(new FlowLayout(FlowLayout.LEADING,0,10));
-        panel4.add(new MetricControl("Performance Metrics:", Consts.pfMetricItems));
+        panel4.add(new MetricControl("Performance Metrics:", Consts.pfMetricItems, emotionMessageBean));
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(panel1);
@@ -62,4 +68,5 @@ public class DetectionPanel extends JPanel {
         add(panel3);
         add(panel4);
     }
+
 }

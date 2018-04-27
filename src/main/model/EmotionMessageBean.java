@@ -96,4 +96,77 @@ public class EmotionMessageBean extends Observable {
                 ", clock=" + clockTick +
                 '}';
     }
+
+    public void setValue(String item, double value){
+        switch (item){
+            case "Raise Brow":{
+                expressive.setRaiseBrow(value);
+                break;
+            }
+            case "Furrow Brow":{
+                expressive.setRaiseBrow(value);
+                break;
+            }
+            case "Look Left":{
+                expressive.setLookingLeft(value);
+                break;
+            }
+            case "Look Right":{
+                expressive.setLookingRight(value);
+                break;
+            }
+            case "Look Up":{
+                expressive.setLookingUp(value);
+                break;
+            }
+            case "Look Down":{
+                expressive.setLookingDown(value);
+                break;
+            }
+            case "Smile":{
+                expressive.setSmile(value);
+                break;
+            }
+            case "Clench":{
+                expressive.setClench(value);
+                break;
+            }
+            case "Blink":{
+                expressive.setBlink(value == 1? true : false);
+                break;
+            }
+            case "Wink Left":{
+                expressive.setLeftWink(value == 1? true : false);
+                break;
+            }
+            case "Wink Right":{
+                expressive.setRightWink(value == 1? true : false);
+                break;
+            }
+            case "Interest":{
+                affective.setInterest(value);
+                break;
+            }
+            case "Engagement":{
+                affective.setEngagement(value);
+                break;
+            }
+            case "Stress":{
+                affective.setStress(value);
+                break;
+            }
+            case "Excitement":{
+                affective.setExcitement(value);
+                break;
+            }
+            case "Relaxation":{
+                affective.setRelaxation(value);
+                break;
+            }
+            case "Focus":{
+                affective.setFocus(value);
+                break;
+            }
+        }
+    }
 }
