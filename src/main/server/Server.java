@@ -31,7 +31,7 @@ public class Server {
         EmotionMessageBean emotionMessageBean = new EmotionMessageBean();
         MessageContolBean messageContolBean = new MessageContolBean();
         messageContolBean.setEmotionMessageBean(emotionMessageBean);
-        InteractivePanel interactivePanel = new InteractivePanel();
+        InteractivePanel interactivePanel = new InteractivePanel(messageContolBean);
         DetectionPanel detectionPanel = new DetectionPanel(messageContolBean);
         ConsolePanel consolePanel = new ConsolePanel();
         ServerWindow window = new ServerWindow(interactivePanel, detectionPanel, consolePanel);
