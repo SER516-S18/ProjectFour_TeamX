@@ -1,6 +1,7 @@
 package main.server.view.components;
 
 import main.model.EmotionMessageBean;
+import main.model.MessageContolBean;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -14,12 +15,12 @@ public class MetricControl extends JPanel {
     private JComboBox<String> itemComboBox;
     private JSpinner itemSpinner;
     private String currentItem;
-    private EmotionMessageBean emotionMessageBean;
+    private MessageContolBean messageContolBean;
 
 
-    public MetricControl(String name, String[] items, EmotionMessageBean bean){
+    public MetricControl(String name, String[] items, MessageContolBean bean){
 
-        emotionMessageBean = bean;
+        messageContolBean = bean;
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         JPanel panel1 = new JPanel();
@@ -44,11 +45,11 @@ public class MetricControl extends JPanel {
         public void actionPerformed(ActionEvent e) {
             String selectedItem = itemComboBox.getSelectedItem().toString();
             if(currentItem != null && selectedItem != currentItem){
-                emotionMessageBean.setValue(currentItem, 0);
+                messageContolBean.setValue(currentItem, 0);
             }
             currentItem = selectedItem;
             double val = (double)itemSpinner.getValue();
-            emotionMessageBean.setValue(currentItem, val);
+            messageContolBean.setValue(currentItem, val);
         }
     }
 
@@ -59,7 +60,7 @@ public class MetricControl extends JPanel {
                 currentItem = itemComboBox.getSelectedItem().toString();
             }
             double val = (double)itemSpinner.getValue();
-            emotionMessageBean.setValue(currentItem, val);
+            messageContolBean.setValue(currentItem, val);
         }
     }
 

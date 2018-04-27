@@ -1,5 +1,6 @@
 package main.server.view;
 
+import main.model.MessageContolBean;
 import main.server.view.components.XSpinner;
 
 import javax.swing.*;
@@ -20,14 +21,15 @@ public class InteractivePanel extends JPanel {
     private JSpinner emoStateSpinner;
     private boolean isAutoReset = false;
     private boolean isStarted = false;
+    private MessageContolBean messageContolBean;
 
 
     /**
      * Constructor is adding the interactivePanel to server UI
      */
-    public InteractivePanel() {
+    public InteractivePanel(MessageContolBean bean) {
 
-        //this.setBackground(Color.GRAY);
+        messageContolBean = bean;
         this.setBorder(new TitledBorder("Interactive"));
 
         chckbxAutoReset = new JCheckBox("Auto Reset");
@@ -53,6 +55,7 @@ public class InteractivePanel extends JPanel {
             } else {
                 btnSend.setText(btnSendValue);
             }
+            messageContolBean.setServerAutoReset(isAutoReset);
         }
     }
 
@@ -64,14 +67,14 @@ public class InteractivePanel extends JPanel {
                 isStarted = true;
                 btnSend.setText(btnStopValue);
                 chckbxAutoReset.setEnabled(false);
-                //TODO: start transmitting
+                messageContolBean.setServerStarted(isStarted);
             } else if(isAutoReset && isStarted){
                 isStarted = false;
                 btnSend.setText(btnStartValue);
                 chckbxAutoReset.setEnabled(true);
-                //TODO: stop transmitting
+                messageContolBean.setServerStarted(isStarted);
             } else {
-                //TODO: transmit once
+                messageContolBean.setServerStarted(true);
             }
         }
     }
@@ -81,7 +84,7 @@ public class InteractivePanel extends JPanel {
         public void stateChanged(ChangeEvent e) {
 
             if(isStarted){
-                //TODO: change transmission period
+                messageContolBean.setInterval((double)emoStateSpinner.getValue());
             }
         }
     }

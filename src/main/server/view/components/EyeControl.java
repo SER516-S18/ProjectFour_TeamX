@@ -1,6 +1,7 @@
 package main.server.view.components;
 
 import main.model.EmotionMessageBean;
+import main.model.MessageContolBean;
 import main.server.view.DetectionPanel;
 
 import javax.swing.*;
@@ -19,11 +20,11 @@ public class EyeControl extends JPanel {
     private JCheckBox chckbxAutoReset;
     private boolean isAutoReset = false;
     private boolean isStarted = false;
-    private EmotionMessageBean emotionMessageBean;
+    private MessageContolBean messageContolBean;
 
-    public EyeControl(String name, String[] items, EmotionMessageBean bean){
+    public EyeControl(String name, String[] items, MessageContolBean bean){
 
-        emotionMessageBean = bean;
+        messageContolBean = bean;
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
 
         JPanel panel1 = new JPanel();
@@ -51,10 +52,10 @@ public class EyeControl extends JPanel {
         public void actionPerformed(ActionEvent e) {
             String selectedItem = itemComboBox.getSelectedItem().toString();
             if(currentItem != null && selectedItem != currentItem){
-                emotionMessageBean.setValue(currentItem, 0);
+                messageContolBean.setValue(currentItem, 0);
             }
             currentItem = selectedItem;
-            //emotionMessageBean.setValue(currentItem, val);
+            messageContolBean.setValue(currentItem, 1);
         }
     }
 
@@ -68,6 +69,8 @@ public class EyeControl extends JPanel {
             } else {
                 btnSend.setText(btnActivateValue);
             }
+
+            messageContolBean.setEyeAutoReset(isAutoReset);
         }
     }
 
@@ -79,14 +82,14 @@ public class EyeControl extends JPanel {
                 isStarted = true;
                 btnSend.setText(btnStopValue);
                 chckbxAutoReset.setEnabled(false);
-                //TODO: start transmitting
+                messageContolBean.setEyeActivated(isStarted);
             } else if(isAutoReset && isStarted){
                 isStarted = false;
                 btnSend.setText(btnStartValue);
                 chckbxAutoReset.setEnabled(true);
-                //TODO: stop transmitting
+                messageContolBean.setEyeActivated(isStarted);
             } else {
-                //TODO: transmit once
+                messageContolBean.setEyeActivated(true);
             }
         }
     }

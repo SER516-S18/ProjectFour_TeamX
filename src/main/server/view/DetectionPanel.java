@@ -2,6 +2,7 @@ package main.server.view;
 
 import com.sun.deploy.panel.JavaPanel;
 import main.model.EmotionMessageBean;
+import main.model.MessageContolBean;
 import main.server.view.components.EyeControl;
 import main.server.view.components.MetricControl;
 import main.server.view.components.XSpinner;
@@ -36,7 +37,7 @@ public class DetectionPanel extends JPanel {
     private double pfMetricSelectedValue;
     private double timeTxtFieldVal;
 
-    public DetectionPanel(EmotionMessageBean emotionMessageBean){
+    public DetectionPanel(MessageContolBean messageContolBean){
         this.setBorder(new TitledBorder("Detection"));
 
         timeTxtField = new JTextField();
@@ -50,17 +51,17 @@ public class DetectionPanel extends JPanel {
 
         JPanel panel2 = new JPanel();
         panel2.setLayout(new FlowLayout(FlowLayout.LEADING,0,10));
-        panel2.add(new MetricControl("Upperface:", Consts.upperfaceItems, emotionMessageBean));
-        panel2.add(new MetricControl("Lowerface:", Consts.lowerfaceItems, emotionMessageBean));
+        panel2.add(new MetricControl("Upperface:", Consts.upperfaceItems, messageContolBean));
+        panel2.add(new MetricControl("Lowerface:", Consts.lowerfaceItems, messageContolBean));
 
 
         JPanel panel3 = new JPanel();
         panel3.setLayout(new FlowLayout(FlowLayout.LEADING,0,10));
-        panel3.add(new EyeControl("Eye:", Consts.eyeItems, emotionMessageBean));
+        panel3.add(new EyeControl("Eye:", Consts.eyeItems, messageContolBean));
 
         JPanel panel4 = new JPanel();
         panel4.setLayout(new FlowLayout(FlowLayout.LEADING,0,10));
-        panel4.add(new MetricControl("Performance Metrics:", Consts.pfMetricItems, emotionMessageBean));
+        panel4.add(new MetricControl("Performance Metrics:", Consts.pfMetricItems, messageContolBean));
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(panel1);

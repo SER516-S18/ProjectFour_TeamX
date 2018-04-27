@@ -1,6 +1,7 @@
 package main.server;
 
 import main.model.EmotionMessageBean;
+import main.model.MessageContolBean;
 import main.server.controller.ServerEndpoint;
 import main.server.view.ConsolePanel;
 import main.server.view.DetectionPanel;
@@ -28,8 +29,10 @@ public class Server {
 
         // Initilaise the gui
         EmotionMessageBean emotionMessageBean = new EmotionMessageBean();
+        MessageContolBean messageContolBean = new MessageContolBean();
+        messageContolBean.setEmotionMessageBean(emotionMessageBean);
         InteractivePanel interactivePanel = new InteractivePanel();
-        DetectionPanel detectionPanel = new DetectionPanel(emotionMessageBean);
+        DetectionPanel detectionPanel = new DetectionPanel(messageContolBean);
         ConsolePanel consolePanel = new ConsolePanel();
         ServerWindow window = new ServerWindow(interactivePanel, detectionPanel, consolePanel);
         window.pack();
