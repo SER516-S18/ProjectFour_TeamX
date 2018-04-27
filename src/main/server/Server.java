@@ -1,6 +1,10 @@
-package main.server.controller;
+package main.server;
 
-import main.server.view.ServerInitUI;
+import main.server.controller.ServerEndpoint;
+import main.server.view.ConsolePanel;
+import main.server.view.DetectionPanel;
+import main.server.view.InteractivePanel;
+import main.server.view.ServerWindow;
 import main.utils.ConnectionConstants;
 
 import javax.websocket.DeploymentException;
@@ -22,8 +26,14 @@ public class Server {
     public static void main(String[] args) {
 
         // Initilaise the gui
-        ServerInitUI.initializeGUI();
-        org.glassfish.tyrus.server.Server server = new
+
+        InteractivePanel interactivePanel = new InteractivePanel();
+        DetectionPanel detectionPanel = new DetectionPanel();
+        ConsolePanel consolePanel = new ConsolePanel();
+        ServerWindow window = new ServerWindow(interactivePanel, detectionPanel, consolePanel);
+        window.pack();
+        window.setVisible(true);
+        /*org.glassfish.tyrus.server.Server server = new
                 org.glassfish.tyrus.server.Server(ConnectionConstants.HOSTNAME,
                 ConnectionConstants.PORT, "/" + ConnectionConstants.ROOT_PATH, ServerEndpoint.class);
         try {
@@ -40,6 +50,6 @@ public class Server {
            }.start();
         }  finally {
             server.stop();
-        }
+        }*/
     }
 }

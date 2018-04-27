@@ -1,5 +1,8 @@
-package main.client.controller;
+package main.client;
 
+import main.client.controller.ClientEndpoint;
+import main.client.controller.ClientWindowLogic;
+import main.client.controller.ServerConnectionPanelLogic;
 import main.client.view.*;
 import main.model.EmotionMessageBean;
 

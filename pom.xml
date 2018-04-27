@@ -85,7 +85,7 @@
                             <appendAssemblyId>false</appendAssemblyId>
                             <archive>
                                 <manifest>
-                                    <mainClass>main.server.controller.Server</mainClass>
+                                    <mainClass>main.server.Server</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>
@@ -104,7 +104,7 @@
                             <appendAssemblyId>false</appendAssemblyId>
                             <archive>
                                 <manifest>
-                                    <mainClass>main.client.controller.Client</mainClass>
+                                    <mainClass>main.client.Client</mainClass>
                                 </manifest>
                             </archive>
                             <descriptorRefs>

@@ -237,11 +237,11 @@ public class EndpointController {
         timer.schedule(new TimerTask() {
             public void run() {
                 sendEmotionMessage();
-                long period1 = (long) (InteractivePanel.getEmoStateTimeInterval() * 1000L);
+                /*long period1 = (long) (InteractivePanel.getEmoStateTimeInterval() * 1000L);
                 if(period!=period1) {
                     timer.cancel();
                     sendInIntervals(InteractivePanel.getEmoStateTimeInterval());
-                }
+                }*/
             }
         }, 0, period);
     }
@@ -260,7 +260,7 @@ public class EndpointController {
         // Reintialisation emotion for resetting data
         this.emotionMessageBean = new EmotionMessageBean();
 
-        UIController.getInstance().updateMessageBeanFromUI();
+        //UIController.getInstance().updateMessageBeanFromUI();
         for (Session client : ServerEndpoint.clients) {
             // do not resend the message to its sender
             try {

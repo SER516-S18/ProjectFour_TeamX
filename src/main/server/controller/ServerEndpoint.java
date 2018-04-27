@@ -32,7 +32,7 @@ public class ServerEndpoint {
      */
     @OnOpen
     public void onOpen(Session session) {
-        ConsolePanel.setMessage(String.format("%s connected", session.getId()));
+        //ConsolePanel.setMessage(String.format("%s connected", session.getId()));
         clients.add(session);
     }
 
@@ -50,7 +50,7 @@ public class ServerEndpoint {
         if (user == null) {
             session.getUserProperties().put("user", message.getSender());
         }
-        ConsolePanel.setMessage(String.format("[%s:%s]", session.getId(), message.toString()));
+        //ConsolePanel.setMessage(String.format("[%s:%s]", session.getId(), message.toString()));
     }
 
     /**
@@ -61,8 +61,8 @@ public class ServerEndpoint {
      */
     @OnClose
     public void onClose(Session session) {
-        ConsolePanel.setMessage(String.format("%s disconnected the connection",
-                session.getId()));
+        //ConsolePanel.setMessage(String.format("%s disconnected the connection",
+        //        session.getId()));
         clients.remove(session);
     }
 
@@ -76,7 +76,7 @@ public class ServerEndpoint {
     @OnError
     public void onError(Session session, Throwable throwable) {
         // Do error handling here
-        ConsolePanel.setMessage(throwable.getMessage());
+        //ConsolePanel.setMessage(throwable.getMessage());
     }
 
 }
