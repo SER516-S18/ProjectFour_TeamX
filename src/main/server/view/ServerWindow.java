@@ -1,6 +1,5 @@
 package main.server.view;
 
-import main.server.controller.UIController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,7 +8,7 @@ import java.awt.*;
  * ServerUI represent the main Emotiv JFrame.
  * Consists of 3 panels Interactive, Detection and Console Panel.
  *
- * @author Akash Sharma
+ * @author Ejaz
  * @version 1.0
  */
 public class ServerWindow extends JFrame {

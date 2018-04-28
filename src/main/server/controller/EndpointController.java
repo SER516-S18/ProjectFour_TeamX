@@ -10,11 +10,11 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 /**
- * Controller which acts as a interface between server and UIController. This
+ * Controller which acts as a interface between server and EndPointController. This
  * class has to be created first when the main.server ui or main.client ui is on
  * and should be the first one to be invoked
  *
- * @author Balachandar Sampath, Rhythm Sharma
+ * @author Balachandar Sampath
  * @version 1.0
  */
 public class EndpointController {
@@ -260,7 +260,6 @@ public class EndpointController {
         // Reintialisation emotion for resetting data
         this.emotionMessageBean = new EmotionMessageBean();
 
-        //UIController.getInstance().updateMessageBeanFromUI();
         for (Session client : ServerEndpoint.clients) {
             // do not resend the message to its sender
             try {

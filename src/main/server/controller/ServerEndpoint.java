@@ -6,6 +6,7 @@ import main.model.MessageEncoder;
 import main.server.view.ConsolePanel;
 import main.utils.ConnectionConstants;
 
+import javax.swing.text.BadLocationException;
 import javax.websocket.*;
 import java.util.Collections;
 import java.util.HashSet;
@@ -32,7 +33,11 @@ public class ServerEndpoint {
      */
     @OnOpen
     public void onOpen(Session session) {
-        //ConsolePanel.setMessage(String.format("%s connected", session.getId()));
+        try {
+            ConsolePanel.setMessage(String.format("%s connected", session.getId()));
+        } catch (BadLocationException ex) {
+            System.out.println(ex.getMessage());
+        }
         clients.add(session);
     }
 
@@ -50,7 +55,12 @@ public class ServerEndpoint {
         if (user == null) {
             session.getUserProperties().put("user", message.getSender());
         }
-        //ConsolePanel.setMessage(String.format("[%s:%s]", session.getId(), message.toString()));
+        try {
+            ConsolePanel.setMessage(String.format("[%s:%s]", session.getId(), message.toString()));
+        } catch (BadLocationException ex) {
+            System.out.println(ex.getMessage());
+        }
+
     }
 
     /**
@@ -61,8 +71,11 @@ public class ServerEndpoint {
      */
     @OnClose
     public void onClose(Session session) {
-        //ConsolePanel.setMessage(String.format("%s disconnected the connection",
-        //        session.getId()));
+        try {
+            ConsolePanel.setMessage(String.format("%s disconnected the connection", session.getId()));
+        } catch (BadLocationException ex) {
+            System.out.println(ex.getMessage());
+        }
         clients.remove(session);
     }
 
@@ -77,6 +90,11 @@ public class ServerEndpoint {
     public void onError(Session session, Throwable throwable) {
         // Do error handling here
         //ConsolePanel.setMessage(throwable.getMessage());
+        try {
+            ConsolePanel.setErrorMessage(throwable.getMessage());
+        } catch (BadLocationException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
 }

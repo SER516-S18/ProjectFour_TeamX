@@ -45,12 +45,29 @@ public class ConsolePanel extends JPanel {
             consoleTextPane.setContentType("text/html");
             StyledDocument doc = (StyledDocument) consoleTextPane.getDocument();
             SimpleAttributeSet keyWord = new SimpleAttributeSet();
-            StyleConstants.setForeground(keyWord, Color.WHITE);
-            StyleConstants.setFontFamily(keyWord, "Times New Roman");
+            StyleConstants.setForeground(keyWord, Color.GREEN);
             StyleConstants.setFontSize(keyWord, 13);
 
             doc.insertString(0, new Date() + "Message: " + message + "\n", keyWord);
             consoleTextPane.setCaretPosition(0);
+
+    }
+
+    /**
+     * Appends a new error message to the top of server console
+     *
+     * @param errorMsg to be set on the console
+     */
+    public static void setErrorMessage(String errorMsg) throws BadLocationException {
+
+        consoleTextPane.setContentType("text/html");
+        StyledDocument doc = (StyledDocument) consoleTextPane.getDocument();
+        SimpleAttributeSet keyWord = new SimpleAttributeSet();
+        StyleConstants.setForeground(keyWord, Color.RED);
+        StyleConstants.setFontSize(keyWord, 13);
+
+        doc.insertString(0, new Date() + "Message: " + errorMsg + "\n", keyWord);
+        consoleTextPane.setCaretPosition(0);
 
     }
 
