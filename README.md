@@ -6,7 +6,7 @@ How to run
 
 ```bash
 $> git clone https://github.com/SER516/ProjectFour_TeamX
-$> cd ProjectThree_Team08
+$> cd ProjectFour_TeamX
 ```
 
 Run the following commands in separate terminals

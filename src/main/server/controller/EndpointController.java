@@ -82,7 +82,18 @@ public class EndpointController {
         for (Session client : ServerEndpoint.clients) {
             // do not resend the message to its sender
             try {
+                double clockTick = messageControlBean.getEmotionMessageBean().getClockTick() + messageControlBean.getInterval();
+                messageControlBean.getEmotionMessageBean().setClockTick(clockTick);
+
+                messageControlBean.setClockTick(clockTick);
                 client.getBasicRemote().sendObject(messageControlBean.getEmotionMessageBean());
+                if(messageControlBean.isEyeActivated() && !messageControlBean.isEyeAutoReset()){
+                    messageControlBean.setValue(messageControlBean.getCurrentEyeItem(),0);
+                } else if(messageControlBean.isEyeActivated() && messageControlBean.isEyeAutoReset()) {
+                    int val = messageControlBean.getEyeVal(messageControlBean.getCurrentEyeItem()) ? 0 : 1;
+                    messageControlBean.setValue(messageControlBean.getCurrentEyeItem(),val);
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (EncodeException e) {

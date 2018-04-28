@@ -1,5 +1,7 @@
 package main.server.view;
 
+import main.model.ConsoleMessage;
+
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import javax.swing.text.BadLocationException;
@@ -11,12 +13,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.security.acl.AclEntry;
 import java.util.Date;
+import java.util.Observable;
+import java.util.Observer;
 
-public class ConsolePanel extends JPanel {
+public class ConsolePanel extends JPanel implements Observer {
 
-    private static JTextPane consoleTextPane;
+    private  JTextPane consoleTextPane;
+    private ConsoleMessage consoleMessage;
+    public ConsolePanel(ConsoleMessage consoleMessage){
 
-    public ConsolePanel(){
+        this.consoleMessage = consoleMessage;
         this.setBorder(new TitledBorder("Console"));
 
         consoleTextPane = new JTextPane();
@@ -40,7 +46,7 @@ public class ConsolePanel extends JPanel {
      *
      * @param message message to be set on the console
      */
-    public static void setMessage(String message) throws BadLocationException {
+    public void setMessage(String message) throws BadLocationException {
 
             consoleTextPane.setContentType("text/html");
             StyledDocument doc = (StyledDocument) consoleTextPane.getDocument();
@@ -58,7 +64,7 @@ public class ConsolePanel extends JPanel {
      *
      * @param errorMsg to be set on the console
      */
-    public static void setErrorMessage(String errorMsg) throws BadLocationException {
+    public void setErrorMessage(String errorMsg) throws BadLocationException {
 
         consoleTextPane.setContentType("text/html");
         StyledDocument doc = (StyledDocument) consoleTextPane.getDocument();
@@ -69,6 +75,15 @@ public class ConsolePanel extends JPanel {
         doc.insertString(0, new Date() + "Message: " + errorMsg + "\n", keyWord);
         consoleTextPane.setCaretPosition(0);
 
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        try {
+            setMessage(consoleMessage.getMessage());
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
     }
 
     private class buttonListener implements ActionListener{

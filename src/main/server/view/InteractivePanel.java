@@ -1,7 +1,6 @@
 package main.server.view;
 
 import main.model.MessageContolBean;
-import main.server.controller.EndpointController;
 import main.server.controller.UIController;
 import main.server.view.components.XSpinner;
 

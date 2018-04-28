@@ -38,6 +38,7 @@ public class EyeControl extends JPanel {
         panel2.setLayout(new FlowLayout(FlowLayout.LEADING,20,10));
         itemComboBox = new JComboBox<>(items);
         itemComboBox.addActionListener(new comboboxListener());
+        messageContolBean.setCurrentEyeItem(items[0]);
         panel2.add(itemComboBox);
         panel2.add(btnSend);
         panel2.add(chckbxAutoReset);
@@ -56,6 +57,7 @@ public class EyeControl extends JPanel {
             }
             currentItem = selectedItem;
             messageContolBean.setValue(currentItem, 1);
+            messageContolBean.setCurrentEyeItem(currentItem);
         }
     }
 

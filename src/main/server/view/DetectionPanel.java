@@ -13,31 +13,16 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
-public class DetectionPanel extends JPanel {
+public class DetectionPanel extends JPanel implements Observer {
 
     private JTextField timeTxtField;
-    private JComboBox<String> upperfaceComboBox;
-    private JSpinner upperfaceSpinner;
-    private JComboBox<String> lowerfaceComboBox;
-    private JSpinner lowerfaceSpinner;
-    private JComboBox<String> eyeComboBox;
-    private JCheckBox chckbxReset;
-    private JButton btnActivate;
-    private JComboBox<String> performanceMetricsComboBox;
-    private JSpinner pfMetricSpinner;
-    private String upperfaceSelectedItem;
-    private double upperfaceSelectedValue;
-    private String lowerfaceSelectedItem;
-    private double lowerfaceSelectedValue;
-    private String eyeStateSelectedItem;
-    private boolean isResetChecked;
-    private boolean isActivated;
-    private String pfMetricSelectedItem;
-    private double pfMetricSelectedValue;
-    private double timeTxtFieldVal;
+    MessageContolBean messageContolBean;
 
     public DetectionPanel(MessageContolBean messageContolBean){
+        this.messageContolBean = messageContolBean;
         this.setBorder(new TitledBorder("Detection"));
 
         timeTxtField = new JTextField();
@@ -70,4 +55,8 @@ public class DetectionPanel extends JPanel {
         add(panel4);
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        timeTxtField.setText(String.valueOf(this.messageContolBean.getClockTick()));
+    }
 }
