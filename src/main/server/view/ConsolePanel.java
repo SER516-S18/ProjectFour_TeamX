@@ -18,11 +18,9 @@ import java.util.Observer;
 
 public class ConsolePanel extends JPanel implements Observer {
 
-    private  JTextPane consoleTextPane;
-    private ConsoleMessage consoleMessage;
-    public ConsolePanel(ConsoleMessage consoleMessage){
+    private  JTextPane consoleTextPane;;
+    public ConsolePanel(){
 
-        this.consoleMessage = consoleMessage;
         this.setBorder(new TitledBorder("Console"));
 
         consoleTextPane = new JTextPane();
@@ -80,7 +78,7 @@ public class ConsolePanel extends JPanel implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         try {
-            setMessage(consoleMessage.getMessage());
+            setMessage(ConsoleMessage.getInstance().getMessage());
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
