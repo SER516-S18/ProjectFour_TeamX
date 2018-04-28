@@ -29,15 +29,14 @@ public class Server {
     public static void main(String[] args) {
 
         // Initilaise the gui
-        ConsoleMessage consoleMessage = new ConsoleMessage();
         EmotionMessageBean emotionMessageBean = new EmotionMessageBean();
         MessageContolBean messageContolBean = new MessageContolBean();
         messageContolBean.setEmotionMessageBean(emotionMessageBean);
         EndpointController.getInstance().setMessageControlBean(messageContolBean);
         InteractivePanel interactivePanel = new InteractivePanel(messageContolBean);
         DetectionPanel detectionPanel = new DetectionPanel(messageContolBean);
-        ConsolePanel consolePanel = new ConsolePanel(consoleMessage);
-        consoleMessage.addObserver(consolePanel);
+        ConsolePanel consolePanel = new ConsolePanel();
+        ConsoleMessage.getInstance().addObserver(consolePanel);
         messageContolBean.addObserver(detectionPanel);
         ServerWindow window = new ServerWindow(interactivePanel, detectionPanel, consolePanel);
         window.pack();

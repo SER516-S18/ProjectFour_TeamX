@@ -34,12 +34,7 @@ public class ServerEndpoint {
      */
     @OnOpen
     public void onOpen(Session session) {
-        /*try {
-            ConsolePanel.setMessage(String.format("%s connected", session.getId()));
-        } catch (BadLocationException ex) {
-            System.out.println(ex.getMessage());
-        }*/
-        //ConsoleMessage.setMess
+        ConsoleMessage.getInstance().setMessage(String.format("%s connected", session.getId()));
         clients.add(session);
     }
 
@@ -57,11 +52,7 @@ public class ServerEndpoint {
         if (user == null) {
             session.getUserProperties().put("user", message.getSender());
         }
-        /*try {
-            ConsolePanel.setMessage(String.format("[%s:%s]", session.getId(), message.toString()));
-        } catch (BadLocationException ex) {
-            System.out.println(ex.getMessage());
-        }*/
+        ConsoleMessage.getInstance().setMessage(String.format("[%s:%s]", session.getId(), message.toString()));
 
     }
 
@@ -73,11 +64,7 @@ public class ServerEndpoint {
      */
     @OnClose
     public void onClose(Session session) {
-        /*try {
-            ConsolePanel.setMessage(String.format("%s disconnected the connection", session.getId()));
-        } catch (BadLocationException ex) {
-            System.out.println(ex.getMessage());
-        }*/
+        ConsoleMessage.getInstance().setMessage(String.format("%s disconnected the connection", session.getId()));
         clients.remove(session);
     }
 
@@ -92,11 +79,7 @@ public class ServerEndpoint {
     public void onError(Session session, Throwable throwable) {
         // Do error handling here
         //ConsolePanel.setMessage(throwable.getMessage());
-        /*try {
-            ConsolePanel.setErrorMessage(throwable.getMessage());
-        } catch (BadLocationException ex) {
-            System.out.println(ex.getMessage());
-        }*/
+        ConsoleMessage.getInstance().setMessage(throwable.getMessage());
     }
 
 }
