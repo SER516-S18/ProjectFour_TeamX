@@ -19,7 +19,6 @@ import java.util.TimerTask;
  */
 public class EndpointController {
 
-    private EmotionMessageBean emotionMessageBean = null;
     private MessageContolBean messageControlBean = null;
     private Timer timer = new Timer("Timer");
 
@@ -38,10 +37,6 @@ public class EndpointController {
 
     public void setMessageControlBean(MessageContolBean messageControlBean) {
         this.messageControlBean = messageControlBean;
-    }
-
-    public EmotionMessageBean getEmotionMessageBean() {
-        return emotionMessageBean;
     }
 
     /**

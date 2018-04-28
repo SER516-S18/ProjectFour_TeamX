@@ -1,6 +1,8 @@
 package main.server.view;
 
 import main.model.MessageContolBean;
+import main.server.controller.EndpointController;
+import main.server.controller.UIController;
 import main.server.view.components.XSpinner;
 
 import javax.swing.*;
@@ -36,6 +38,7 @@ public class InteractivePanel extends JPanel {
         chckbxAutoReset.addActionListener(new autoResetListener());
         emoStateSpinner = new XSpinner(0.25,100,0.25);
         emoStateSpinner.addChangeListener(new spinnerListener());
+        messageContolBean.setInterval((double)emoStateSpinner.getValue());
         btnSend = new JButton(btnSendValue);
         btnSend.addActionListener(new buttonListener());
         this.setLayout(new FlowLayout(FlowLayout.LEADING,20,10));
@@ -68,13 +71,17 @@ public class InteractivePanel extends JPanel {
                 btnSend.setText(btnStopValue);
                 chckbxAutoReset.setEnabled(false);
                 messageContolBean.setServerStarted(isStarted);
+                UIController.getInstance().sendInIntervals(messageContolBean.getInterval());
+
             } else if(isAutoReset && isStarted){
                 isStarted = false;
                 btnSend.setText(btnStartValue);
                 chckbxAutoReset.setEnabled(true);
                 messageContolBean.setServerStarted(isStarted);
+                UIController.getInstance().stop();
             } else {
                 messageContolBean.setServerStarted(true);
+                UIController.getInstance().sendOnce();
             }
         }
     }
