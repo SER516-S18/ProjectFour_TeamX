@@ -1,6 +1,7 @@
 package main.client.view;
 
 import main.server.view.InteractivePanel;
+import main.utils.Consts;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,59 +37,56 @@ public class MetricsValuePanel extends JPanel {
         this.metricGraphPanel = metricGraphPanel1;
         colorBoxes[0] = new ColorBox(0);
         colorBoxes[0].setBoxColor(0);
-        colorBoxes[0].setEmotionName("Interest");
+        colorBoxes[0].setEmotionName(Consts.pfMetricItems[0]);
         colorBoxes[0].getDropdown().addItemListener(new colorBoxListner());
 
         this.add(colorBoxes[0]);
 
         colorBoxes[1] = new ColorBox(1);
-        colorBoxes[1].setEmotionName("Engagement");
+        colorBoxes[1].setEmotionName(Consts.pfMetricItems[1]);
         colorBoxes[1].setBoxColor(1);
         colorBoxes[1].getDropdown().addItemListener(new colorBoxListner());
         this.add(colorBoxes[1]);
 
         colorBoxes[2] = new ColorBox(2);
-        colorBoxes[2] .setEmotionName("Stress");
+        colorBoxes[2] .setEmotionName(Consts.pfMetricItems[2]);
         colorBoxes[2] .setBoxColor(2);
         colorBoxes[2] .getDropdown().addItemListener(new colorBoxListner());
         this.add(colorBoxes[2] );
 
         colorBoxes[3] = new ColorBox(3);
-        colorBoxes[3].setEmotionName("Relaxation");
+        colorBoxes[3].setEmotionName(Consts.pfMetricItems[3]);
         colorBoxes[3].setBoxColor(3);
         colorBoxes[3].getDropdown().addItemListener(new colorBoxListner());
         this.add(colorBoxes[3]);
 
         colorBoxes[4] = new ColorBox(4);
-        colorBoxes[4].setEmotionName("Excitement");
+        colorBoxes[4].setEmotionName(Consts.pfMetricItems[4]);
         colorBoxes[4].setBoxColor(4);
         colorBoxes[4].getDropdown().addItemListener(new colorBoxListner());
         this.add(colorBoxes[4]);
 
 
         colorBoxes[5] = new ColorBox(5);
-        colorBoxes[5].setEmotionName("Focus");
+        colorBoxes[5].setEmotionName(Consts.pfMetricItems[5]);
         colorBoxes[5].setBoxColor(5);
         colorBoxes[5].getDropdown().addItemListener(new colorBoxListner());
         this.add(colorBoxes[5]);
 
         JLabel title = new JLabel();
         title.setText("Display Length:");
-        title.setBounds(50, 495, 140, 30);
         this.add(title);
 
         displayLength = new JFormattedTextField();
         displayLength.setValue(new Double(300));
         displayLength.setOpaque(true);
         displayLength.setBackground(Color.GRAY);
-        displayLength.setBounds(145, 495, 50, 30);
         this.add(displayLength);
 
         setLength = new JButton();
         setLength.setText("Seconds");
         setLength.setOpaque(true);
         setLength.setBackground(Color.GRAY);
-        setLength.setBounds(210, 495, 100, 30);
         setLength.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 metricGraphPanel.updateDisplayLength(getDisplayLength());

@@ -2,6 +2,7 @@ package main.client.view;
 
 import main.model.EmotionMessageBean;
 import main.model.ExpressiveBean;
+import main.utils.Consts;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -28,17 +29,18 @@ import java.util.Observer;
 public class ExpressionGraphPanel extends JPanel implements Observer {
 
     private EmotionMessageBean emotionMessageBean;
-    private TimeSeries blinkValue = new TimeSeries("Blink");
-    private TimeSeries rightWinkValue = new TimeSeries("Right Wink");
-    private TimeSeries leftWinkValue = new TimeSeries("Left Wink");
-    private TimeSeries lookingRightValue = new TimeSeries("Looking Right");
-    private TimeSeries lookingLeftValue = new TimeSeries("Looking Left");
-    private TimeSeries eyeBrowRaiseValue = new TimeSeries("Eyebrow Raise");
-    private TimeSeries eyeBrowFurrowValue = new TimeSeries("Eyebrow Furrow ");
-    private TimeSeries smileValue = new TimeSeries("Smile");
-    private TimeSeries clenchValue = new TimeSeries("Clench");
-    private TimeSeries lookingUpValue = new TimeSeries("Looking Up");
-    private TimeSeries lookingDownValue = new TimeSeries("Looking Down");
+    private TimeSeries blinkValue = new TimeSeries(Consts.eyeItems[0]);
+    private TimeSeries leftWinkValue = new TimeSeries(Consts.eyeItems[1]);
+    private TimeSeries rightWinkValue = new TimeSeries(Consts.eyeItems[2]);
+    private TimeSeries eyeBrowRaiseValue = new TimeSeries(Consts.upperfaceItems[0]);
+    private TimeSeries eyeBrowFurrowValue = new TimeSeries(Consts.upperfaceItems[1]);
+    private TimeSeries lookingLeftValue = new TimeSeries(Consts.upperfaceItems[2]);
+    private TimeSeries lookingRightValue = new TimeSeries(Consts.upperfaceItems[3]);
+    private TimeSeries lookingUpValue = new TimeSeries(Consts.upperfaceItems[4]);
+    private TimeSeries lookingDownValue = new TimeSeries(Consts.upperfaceItems[5]);
+    private TimeSeries smileValue = new TimeSeries(Consts.lowerfaceItems[0]);
+    private TimeSeries clenchValue = new TimeSeries(Consts.lowerfaceItems[1]);
+
 
     /**
      * constructor creates subpanels to display multiple charts and labels
