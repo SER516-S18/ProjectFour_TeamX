@@ -1,11 +1,14 @@
 package main.client.view;
 
+import main.server.view.InteractivePanel;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.EventListener;
 
 /**
  * Panel to display color for the graph plot representing effects in form of boxes. And display the time difference
@@ -16,15 +19,10 @@ import java.awt.event.ItemListener;
  * @version 1.0
  */
 public class MetricsValuePanel extends JPanel {
-    private ColorBox interest;
-    private ColorBox engagement;
-    private ColorBox stress;
-    private ColorBox relaxation;
-    private ColorBox excitement;
-    private ColorBox focus;
     private JFormattedTextField displayLength;
     private JButton setLength;
     private MetricGraphPanel metricGraphPanel;
+    ColorBox[] colorBoxes = new ColorBox[6];
 
     /**
      * Constructor to initialize message bean and chart varibales
@@ -33,112 +31,46 @@ public class MetricsValuePanel extends JPanel {
      *                          class object for graphPanel control
      */
     public MetricsValuePanel(MetricGraphPanel metricGraphPanel1) {
-        this.setLayout(null);
+        this.setLayout(new GridLayout(3,2));
         this.setBackground(Color.LIGHT_GRAY);
         this.metricGraphPanel = metricGraphPanel1;
-        interest = new ColorBox();
-        interest.setBoxColor(0);
-        interest.setEmotionName("Interest");
-        interest.setBounds(35, 15, 150, 150);
-        interest.getDropdown().addItemListener(
-                new ItemListener() {
-                    @Override
-                    public void itemStateChanged(ItemEvent e) {
-                        if (e.getStateChange() == ItemEvent.SELECTED) {
-                            interest.setBackground(getInterstColor());
-                            metricGraphPanel.updateColor(0, getInterstColor());
-                        }
-                    }
-                }
-        );
+        colorBoxes[0] = new ColorBox(0);
+        colorBoxes[0].setBoxColor(0);
+        colorBoxes[0].setEmotionName("Interest");
+        colorBoxes[0].getDropdown().addItemListener(new colorBoxListner());
 
-        this.add(interest);
+        this.add(colorBoxes[0]);
 
-        engagement = new ColorBox();
-        engagement.setEmotionName("Engagement");
-        engagement.setBoxColor(1);
-        engagement.setBounds(190, 15, 150, 150);
-        engagement.getDropdown().addItemListener(
-                new ItemListener() {
-                    @Override
-                    public void itemStateChanged(ItemEvent e) {
-                        if (e.getStateChange() == ItemEvent.SELECTED) {
-                            engagement.setBackground(getEngagementColor());
-                            metricGraphPanel.updateColor(1, getEngagementColor());
-                        }
-                    }
-                }
-        );
-        this.add(engagement);
+        colorBoxes[1] = new ColorBox(1);
+        colorBoxes[1].setEmotionName("Engagement");
+        colorBoxes[1].setBoxColor(1);
+        colorBoxes[1].getDropdown().addItemListener(new colorBoxListner());
+        this.add(colorBoxes[1]);
 
-        stress = new ColorBox();
-        stress.setEmotionName("Stress");
-        stress.setBoxColor(2);
-        stress.setBounds(35, 170, 150, 150);
-        stress.getDropdown().addItemListener(
-                new ItemListener() {
-                    @Override
-                    public void itemStateChanged(ItemEvent e) {
-                        if (e.getStateChange() == ItemEvent.SELECTED) {
-                            stress.setBackground(getStressColor());
-                            metricGraphPanel.updateColor(2, getStressColor());
-                        }
-                    }
-                }
-        );
-        this.add(stress);
+        colorBoxes[2] = new ColorBox(2);
+        colorBoxes[2] .setEmotionName("Stress");
+        colorBoxes[2] .setBoxColor(2);
+        colorBoxes[2] .getDropdown().addItemListener(new colorBoxListner());
+        this.add(colorBoxes[2] );
 
-        relaxation = new ColorBox();
-        relaxation.setEmotionName("Relaxation");
-        relaxation.setBoxColor(3);
-        relaxation.setBounds(190, 170, 150, 150);
-        relaxation.getDropdown().addItemListener(
-                new ItemListener() {
-                    @Override
-                    public void itemStateChanged(ItemEvent e) {
-                        if (e.getStateChange() == ItemEvent.SELECTED) {
-                            relaxation.setBackground(getRelaxationColor());
-                            metricGraphPanel.updateColor(3, getRelaxationColor());
-                        }
-                    }
-                }
-        );
-        this.add(relaxation);
+        colorBoxes[3] = new ColorBox(3);
+        colorBoxes[3].setEmotionName("Relaxation");
+        colorBoxes[3].setBoxColor(3);
+        colorBoxes[3].getDropdown().addItemListener(new colorBoxListner());
+        this.add(colorBoxes[3]);
 
-        excitement = new ColorBox();
-        excitement.setEmotionName("Excitement");
-        excitement.setBoxColor(4);
-        excitement.setBounds(35, 325, 150, 150);
-        excitement.getDropdown().addItemListener(
-                new ItemListener() {
-                    @Override
-                    public void itemStateChanged(ItemEvent e) {
-                        if (e.getStateChange() == ItemEvent.SELECTED) {
-                            excitement.setBackground(getExcitemetColor());
-                            metricGraphPanel.updateColor(4, getExcitemetColor());
-                        }
-                    }
-                }
-        );
-        this.add(excitement);
+        colorBoxes[4] = new ColorBox(4);
+        colorBoxes[4].setEmotionName("Excitement");
+        colorBoxes[4].setBoxColor(4);
+        colorBoxes[4].getDropdown().addItemListener(new colorBoxListner());
+        this.add(colorBoxes[4]);
 
 
-        focus = new ColorBox();
-        focus.setEmotionName("Focus");
-        focus.setBoxColor(5);
-        focus.setBounds(190, 325, 150, 150);
-        focus.getDropdown().addItemListener(
-                new ItemListener() {
-                    @Override
-                    public void itemStateChanged(ItemEvent e) {
-                        if (e.getStateChange() == ItemEvent.SELECTED) {
-                            focus.setBackground(getFocusColor());
-                            metricGraphPanel.updateColor(5, getFocusColor());
-                        }
-                    }
-                }
-        );
-        this.add(focus);
+        colorBoxes[5] = new ColorBox(5);
+        colorBoxes[5].setEmotionName("Focus");
+        colorBoxes[5].setBoxColor(5);
+        colorBoxes[5].getDropdown().addItemListener(new colorBoxListner());
+        this.add(colorBoxes[5]);
 
         JLabel title = new JLabel();
         title.setText("Display Length:");
@@ -166,51 +98,23 @@ public class MetricsValuePanel extends JPanel {
     }
 
     /**
-     * private method to return the color selected by user for interest plot.
-     */
-    private Color getInterstColor() {
-        return interest.getBoxColor();
-    }
-
-    /**
-     * private method to return the color selected by user for engagement plot.
-     */
-    private Color getEngagementColor() {
-        return engagement.getBoxColor();
-    }
-
-    /**
-     * private method to return the color selected by user for stress plot.
-     */
-    private Color getStressColor() {
-        return stress.getBoxColor();
-    }
-
-    /**
-     * private method to return the color selected by user for relaxation plot.
-     */
-    private Color getRelaxationColor() {
-        return relaxation.getBoxColor();
-    }
-
-    /**
-     * private method to return the color selected by user for excitement plot.
-     */
-    private Color getExcitemetColor() {
-        return excitement.getBoxColor();
-    }
-
-    /**
-     * private method to return the color selected by user for focus plot.
-     */
-    private Color getFocusColor() {
-        return focus.getBoxColor();
-    }
-
-    /**
      * private method to get the display length as per data entered by the user. Default is set to 1.
      */
     private double getDisplayLength() {
         return (double) displayLength.getValue();
+    }
+
+
+    private class colorBoxListner implements ItemListener{
+
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            if (e.getStateChange() == ItemEvent.SELECTED) {
+                JComboBox<String> comboBox = (JComboBox<String>)e.getSource();
+                int key = Integer.parseInt(comboBox.getName());
+                colorBoxes[key].setBackground(colorBoxes[key].getBoxColor());
+                metricGraphPanel.updateColor(key, colorBoxes[key].getBoxColor());
+            }
+        }
     }
 }

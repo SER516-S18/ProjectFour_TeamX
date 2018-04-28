@@ -17,7 +17,7 @@ public class ColorBox extends JPanel {
     private Color colors[] = new Color[]{Color.RED.darker(), Color.GREEN.darker(), Color.YELLOW.darker(),
             Color.BLUE.darker(), Color.PINK.darker(), Color.ORANGE.darker()};
 
-    public ColorBox() {
+    public ColorBox(int key) {
         setSize(150, 150);
         setLayout(new GridBagLayout());
         GridBagConstraints grid = new GridBagConstraints();
@@ -25,6 +25,7 @@ public class ColorBox extends JPanel {
         grid.gridy = 0;
 
         dropdown = new JComboBox<>(colorList);
+        dropdown.setName(String.valueOf(key));
         dropdown.setBorder(BorderFactory.createEmptyBorder());
         dropdown.setBackground(Color.GRAY);
         this.add(dropdown, grid);
