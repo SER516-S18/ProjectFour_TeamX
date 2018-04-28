@@ -94,6 +94,11 @@ public class MessageContolBean extends Observable{
         emotionMessageBean = bean;
     }
 
+    /**
+     * To get the current value of the item
+     * @param item
+     * @return boolean
+     */
     public boolean getEyeVal(String item){
         switch(item){
             case "Blink":{
@@ -109,7 +114,11 @@ public class MessageContolBean extends Observable{
         return false;
     }
 
-
+    /**
+     * To set the values changes on server side.
+     * @param item
+     * @param value
+     */
     public void setValue(String item, double value){
         switch (item){
             case "Raise Brow":{

@@ -1,5 +1,12 @@
 package main.model;
 
+/**
+ * Bean which stores the console message to be shown on the server side.
+ * Setter Getter for class properties included
+ *
+ * @author Amaresh Bingumalla
+ * @version 1.0
+ */
 import java.util.Observable;
 
 public class ConsoleMessage extends Observable {
@@ -27,7 +34,7 @@ public class ConsoleMessage extends Observable {
     }
 
     /**
-     *
+     * Getter
      * @return message
      */
     public String getMessage() {
@@ -35,7 +42,7 @@ public class ConsoleMessage extends Observable {
     }
 
     /**
-     *
+     * Setter
      * @param message
      */
     public void setMessage(String message) {
