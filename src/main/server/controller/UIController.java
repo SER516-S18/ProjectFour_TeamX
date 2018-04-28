@@ -1,5 +1,10 @@
 package main.server.controller;
 
+/**
+ * Link between UI and Endpoint controller
+ * @author Amaresh
+ * @version 1.2
+ */
 public class UIController {
 
     public static UIController getInstance() {

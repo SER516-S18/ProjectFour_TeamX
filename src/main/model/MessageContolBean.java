@@ -2,6 +2,11 @@ package main.model;
 
 import java.util.Observable;
 
+/**
+ * Bean that controls how the server sends data. Wraps emotion bean
+ * @author Amaresh
+ * @version 1.2
+ */
 public class MessageContolBean extends Observable{
 
     private EmotionMessageBean emotionMessageBean;

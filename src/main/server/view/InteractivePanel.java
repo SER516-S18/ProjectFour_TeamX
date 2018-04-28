@@ -12,6 +12,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Interactive panel, used to start/stop server
+ * @author Ejaz Saifudeen
+ * @version 1.2
+ */
 public class InteractivePanel extends JPanel {
 
     private final String btnSendValue = "Send";
@@ -47,6 +52,9 @@ public class InteractivePanel extends JPanel {
         this.add(btnSend);
     }
 
+    /**
+     * Auto reset checkbox listener, updates relevant value in bean
+     */
     private class autoResetListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -61,6 +69,9 @@ public class InteractivePanel extends JPanel {
         }
     }
 
+    /**
+     * start button listener, updates relevant value in bean
+     */
     private class buttonListener implements ActionListener{
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -85,6 +96,9 @@ public class InteractivePanel extends JPanel {
         }
     }
 
+    /**
+     * interval spinner listener, updates relevant value in bean
+     */
     private class spinnerListener implements ChangeListener {
         @Override
         public void stateChanged(ChangeEvent e) {

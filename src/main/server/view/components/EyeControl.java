@@ -1,14 +1,15 @@
 package main.server.view.components;
 
-import main.model.EmotionMessageBean;
 import main.model.MessageContolBean;
-import main.server.view.DetectionPanel;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Wrapper for user eye control
+ */
 public class EyeControl extends JPanel {
 
     private JComboBox<String> itemComboBox;

@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * ServerUI represent the main Emotiv JFrame.
+ * ServerWindowrepresent the server JFrame.
  * Consists of 3 panels Interactive, Detection and Console Panel.
  *
  * @author Ejaz
@@ -23,5 +23,4 @@ public class ServerWindow extends JFrame {
         this.getContentPane().add(detectionPanel);
         this.getContentPane().add(consolePanel);
     }
-
 }

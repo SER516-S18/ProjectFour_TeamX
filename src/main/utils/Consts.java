@@ -1,5 +1,8 @@
 package main.utils;
 
+/**
+ * Value Constants
+ */
 public class Consts {
 
     public static String[] upperfaceItems = new String[]{"Raise Brow", "Furrow Brow",

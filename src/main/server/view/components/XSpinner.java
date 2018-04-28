@@ -2,6 +2,9 @@ package main.server.view.components;
 
 import javax.swing.*;
 
+/**
+ * Wrapper for JSpinner
+ */
 public class XSpinner extends JSpinner {
 
     public XSpinner(double start, double maximum, double step){

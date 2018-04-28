@@ -1,21 +1,20 @@
 package main.server.view;
 
-import com.sun.deploy.panel.JavaPanel;
-import main.model.EmotionMessageBean;
 import main.model.MessageContolBean;
 import main.server.view.components.EyeControl;
 import main.server.view.components.MetricControl;
-import main.server.view.components.XSpinner;
 import main.utils.Consts;
-
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Detection panel, used to manipulate upperface, lowerface, eye and affective values
+ * @author Ejaz Saifudeen
+ * @version 1.2
+ */
 public class DetectionPanel extends JPanel implements Observer {
 
     private JTextField timeTxtField;
@@ -55,6 +54,11 @@ public class DetectionPanel extends JPanel implements Observer {
         add(panel4);
     }
 
+    /**
+     * Observer update, update clock tick
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         timeTxtField.setText(String.valueOf(this.messageContolBean.getClockTick()));

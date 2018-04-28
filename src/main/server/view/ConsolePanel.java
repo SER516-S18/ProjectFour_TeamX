@@ -16,6 +16,11 @@ import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Panel to log messages to console
+ * @author Ejaz Saifudeen
+ * @version 1.2
+ */
 public class ConsolePanel extends JPanel implements Observer {
 
     private  JTextPane consoleTextPane;;
@@ -75,6 +80,11 @@ public class ConsolePanel extends JPanel implements Observer {
 
     }
 
+    /**
+     * Observer update
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         try {
@@ -84,6 +94,9 @@ public class ConsolePanel extends JPanel implements Observer {
         }
     }
 
+    /**
+     * console clear event listener
+     */
     private class buttonListener implements ActionListener{
 
         @Override
